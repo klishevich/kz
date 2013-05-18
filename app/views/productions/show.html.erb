@@ -1,0 +1,39 @@
+<h2>Продукция лота</h2>
+<p>Наименование торгов: <%= @tender.name %></p>
+<p>Наименование лота: <%= @lot.name %></p>
+<% if notice %>
+    <div class="flash_notice"><%= notice %></div>
+<% end %>
+<p class="operations"><%= link_to 'Реестр торгов', tenders_path %>
+  <%= link_to 'Карточка торгов', tender_path(@tender) %>
+  <%= link_to 'Лот торгов', tender_lot_path(@tender,@lot) %>
+  <%= link_to 'Редактировать', edit_tender_lot_production_path(@tender,@lot,@production) %></p>
+<%= form_for([@tender,@lot,@production]) do |f| %>
+<table>
+  <tr>
+    <td class="right"><b><%= f.label :order_number %></b></td>
+    <td><%= @production.order_number %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :product_type_id %></b></td>
+    <td><%= @production.product_type.name %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :is_electronic %></b></td>
+    <td><%= @production.is_electronic.yesno %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :quantity %></b></td>
+    <td><%= @production.quantity %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :measure_id %></b></td>
+    <td><%=@production.measure.name %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :price %></b></td>
+    <td>  <%= number_to_currency(@production.price) %></td>
+  </tr>
+</table>
+  <% end %>
+

@@ -1,0 +1,65 @@
+<h2>Реестр торгов</h2>
+<p class="operations"><%= link_to 'Создать торги', new_tender_path %></p>
+<fieldset>
+  <%= form_tag tenders_path, :method => "get" do %>
+    <table>
+      <tr>
+        <td class="search_title">Реестровый номер:</td>
+        <td class="search_field"><%= text_field_tag :sreg_num, params[:sreg_num] %></td>
+        <td class="search_title">Дата создания c</td>
+        <td class="search_field"><%= select_date @date_reg_s, :prefix => :sdate_reg_s, :order => [:day, :month, :year]%>
+           по <%= select_date @date_reg_po, :prefix => :sdate_reg_po, :order => [:day, :month, :year]%></td></tr>
+      <tr>
+        <td class="search_title">Наименование торгов:</td>
+        <td class="search_field"><%= text_field_tag :sname, params[:sname] %></td>
+        <td class="search_title">План. дата размещения c</td>
+        <td class="search_field"><%= select_date @placing_date_s, :prefix => :splacing_date_s, :order => [:day, :month, :year]%>
+          по <%= select_date @placing_date_po, :prefix => :splacing_date_po, :order => [:day, :month, :year]%></td>
+      </tr>
+      <tr>
+        <td class="search_title">Наименование заказчика:</td>
+        <td class="search_field"><%= select_tag :scustomer, options_from_collection_for_select(Customer.all, :id, :name, params[:scustomer]) %></td>
+        <td class="search_title">Начальная цена от</td>
+        <td class="search_field"><%= text_field_tag :sprice_s, params[:sprice_s] %> до <%= text_field_tag :sprice_do, params[:sprice_do] %></td>
+      </tr>
+      <tr>
+        <td class="search_title">Способ закупки:</td>
+        <td class="search_field"><%= select_tag :stender_type, options_from_collection_for_select(TenderType.all, :id, :name, params[:stender_type]) %></td>
+        <td class="search_title">Статус:</td>
+        <td class="search_field"><%= select_tag :stender_state, options_from_collection_for_select(TenderState.all, :id, :name, params[:stender_state]) %></td>
+      </tr>
+      <tr><td></td><td class="search_button"><%= submit_tag "Найти торги", :name => nil %> <%= link_to "Очистить", tenders_path%></td><td></td><td></td></tr>
+    </table>
+<% end %>
+</fieldset>
+<table>
+  <tr>
+    <th class="operations">Операции</th>
+    <th class="reg_num">Реестровый номер торгов</th>
+    <th>Наименование торгов</th>
+    <th class="date">План. дата размещения</th>
+    <th>Начальная цена</th>
+    <th>Способ закупки</th>
+    <th>Статус</th>
+    <th>Заказчик</th>
+    <th>Дата создания</th>
+  </tr>
+
+<% @tenders.each do |tender| %>
+  <tr>
+    <td><%= link_to 'Смотр', tender %>&nbsp;
+      <%= link_to 'Ред', edit_tender_path(tender) %>&nbsp;
+      <%= link_to 'Уд', tender, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td class="number"><%= tender.registry_number %></td>
+    <td><%= tender.name %></td>
+    <td class="date"><%=l tender.placing_date %></td>
+    <td class="number"><%= number_to_currency(tender.price) %></td>
+    <td><%= tender.tender_type.name %></td>
+    <td><%= tender.tender_state.name %></td>
+    <td><%= tender.customer.name %></td>
+    <td class="date"><%=l tender.created_at.to_date %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

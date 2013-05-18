@@ -1,0 +1,2 @@
+module TenderStatesHelper
+end

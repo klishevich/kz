@@ -1,0 +1,91 @@
+<%= form_for(@tender) do |f| %>
+  <% if @tender.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(@tender.errors.count, "error") %> prohibited this tender from being saved:</h4>
+
+      <ul>
+      <% @tender.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <table>
+      <tr>
+        <td class="right"><b><%= f.label :registry_number %></b></td>
+        <td><%= f.text_field :registry_number %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :name %></b></td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :placing_date %></b></td>
+        <td><%= f.date_select :placing_date %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :tender_type_id %></b></td>
+        <td><%= collection_select(:tender, :tender_type_id, TenderType.all, :id, :name) %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :tender_state_id %></b></td>
+        <td><%= collection_select(:tender, :tender_state_id, TenderState.all, :id, :name) %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :customer_id %></b></td>
+        <td><%= collection_select(:tender, :customer_id, Customer.all, :id, :name) %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :start_app_date %></b></td>
+        <td><%= f.date_select :start_app_date %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :end_app_date %></b></td>
+        <td><%= f.date_select :end_app_date %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :app_place %></b></td>
+        <td><%= f.text_field :app_place %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :app_order %></b></td>
+        <td><%= f.text_field :app_order %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :app_open_date %></b></td>
+        <td><%= f.date_select :app_open_date %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :app_open_place %></b></td>
+        <td> <%= f.text_field :app_open_place %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :app_view_date %></b></td>
+        <td><%= f.date_select :app_view_date %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :app_view_place %></b></td>
+        <td><%= f.text_field :app_view_place %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :doc_begin_date %></b></td>
+        <td><%= f.date_select :doc_begin_date %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :doc_end_date %></b></td>
+        <td><%= f.date_select :doc_end_date %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :doc_place %></b></td>
+        <td><%= f.text_field :doc_place %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :doc_order %></b></td>
+        <td><%= f.text_field :doc_order %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><div class="actions"><%= f.submit action_name="Сохранить"%></div></td>
+      </tr>
+    </table>
+<% end %>

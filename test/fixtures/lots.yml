@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  start_price: 1.5
+  contract_delivery_date: 2013-04-15
+  tender: 
+
+two:
+  name: MyString
+  start_price: 1.5
+  contract_delivery_date: 2013-04-15
+  tender: 

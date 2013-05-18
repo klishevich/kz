@@ -1,0 +1,113 @@
+<h2>Карточка торгов</h2>
+<% if notice %>
+      <div class="flash_notice"><%= notice %></div>
+<% end %>
+<p class="operations"><%= link_to 'Реестр торгов', tenders_path %> <%= link_to 'Редактировать', edit_tender_path(@tender) %></p>
+<%= form_for(@tender) do |f| %>
+<table>
+  <tr>
+    <td class="right"><b><%= f.label :registry_number %></b></td>
+    <td><%= @tender.registry_number %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :name %></b></td>
+    <td><%= @tender.name %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :placing_date %></b></td>
+    <td><%=l @tender.placing_date %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :price %></b></td>
+    <td><%= number_to_currency(@tender.price) %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :tender_type_id %></b></td>
+    <td><%= @tender.tender_type.name %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :tender_state_id %></b></td>
+    <td><%= @tender.tender_state.name %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :customer_id %></b></td>
+    <td><%= @tender.customer.name %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :created_at %></b></td>
+    <td><%=l @tender.created_at.to_date %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :start_app_date %></b></td>
+    <td><%=l @tender.start_app_date %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :end_app_date %></b></td>
+    <td><%=l @tender.end_app_date %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :app_place %></b></td>
+    <td><%= @tender.app_place %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :app_order %></b></td>
+    <td><%= @tender.app_order %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :app_open_date %></b></td>
+    <td><%=l @tender.app_open_date %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :app_open_place %></b></td>
+    <td><%= @tender.app_open_place %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :app_view_date %></b></td>
+    <td><%=l @tender.app_view_date %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :app_view_place %></b></td>
+    <td><%= @tender.app_view_place %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :doc_begin_date %></b></td>
+    <td><%=l @tender.doc_begin_date %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :doc_end_date %></b></td>
+    <td><%=l @tender.doc_end_date %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :doc_place %></b></td>
+    <td><%= @tender.doc_place %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :doc_order %></b></td>
+    <td><%= @tender.doc_order %></td>
+  </tr>
+</table>
+    <%end%>
+
+<h3>Список лотов</h3>
+<p class="operations"><%= link_to 'Создать лот', new_tender_lot_path(@tender) %></p>
+<table>
+  <tr>
+    <th class="operations">Операции</th>
+    <th>Наименование лота</th>
+    <th>Начальная цена</th>
+    <th>Срок предоставления договора</th>
+  </tr>
+
+  <% @tender.lots.each do |mylot| %>
+      <tr>
+        <td><%= link_to 'Смотр', tender_lot_path(@tender, mylot)%>&nbsp;
+          <%= link_to 'Ред', edit_tender_lot_path(@tender, mylot)%>&nbsp;
+          <%= link_to 'Уд', [@tender, mylot], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= mylot.name %></td>
+        <td class="number"><%= number_to_currency(mylot.start_price) %></td>
+        <td><%=l mylot.contract_delivery_date %></td>
+      </tr>
+  <% end %>
+</table>
+<br/>
+

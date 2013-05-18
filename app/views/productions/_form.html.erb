@@ -1,0 +1,34 @@
+<%= form_for([@tender, @lot, @production]) do |f| %>
+    <table>
+      <tr>
+        <td class="right"><b><%= f.label :order_number %></b></td>
+        <td><%= f.text_field :order_number %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :product_type_id %></b></td>
+        <td><%= collection_select(:production, :product_type_id, ProductType.all, :id, :name) %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :is_electronic %></b></td>
+        <td><%= f.check_box :is_electronic %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :quantity %></b></td>
+        <td><%= f.text_field :quantity %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :measure_id %></b></td>
+        <td><%= collection_select(:production, :measure_id, Measure.all, :id, :name) %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :price %></b></td>
+        <td><%= f.text_field :price %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>  <div class="actions">
+          <%= f.submit name="Сохранить"%>
+        </div></td>
+      </tr>
+    </table>
+<% end %>

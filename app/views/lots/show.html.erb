@@ -1,0 +1,126 @@
+<h2>Лот торгов</h2>
+<p>Наименование торгов: <%= @lot.tender.name %></p>
+<% if notice %>
+    <div class="flash_notice"><%= notice %></div>
+<% end %>
+<p class="operations"><%= link_to 'Реестр торгов', tenders_path %>
+  <%= link_to 'Карточка торгов', tender_path(@lot.tender) %>
+  <%= link_to 'Редактировать', edit_tender_lot_path(@lot.tender,@lot) %></p>
+<%= form_for([@lot.tender,@lot]) do |f| %>
+<table>
+  <tr>
+    <td class="right"><b><%= f.label :order_number %></b></td>
+    <td><%= @lot.order_number %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :name %></b></td>
+    <td><%= @lot.name %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :start_price %></b></td>
+    <td><%= number_to_currency(@lot.start_price) %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :contract_delivery_date %></b></td>
+    <td><%=l @lot.contract_delivery_date %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :contract %></b></td>
+    <td>  <% if (@lot.contract?) %>
+          <%= link_to(@lot.contract.ident, @lot.contract.url)%>
+      <% end %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :tz_file %></b></td>
+    <td>  <% if (@lot.tz_file?) %>
+          <%= link_to(@lot.tz_file.ident, @lot.tz_file.url)%>
+      <% end %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :initial_price_reasoning_file %></b></td>
+    <td>  <% if (@lot.initial_price_reasoning_file?) %>
+          <%= link_to(@lot.initial_price_reasoning_file.ident, @lot.initial_price_reasoning_file.url)%>
+      <% end %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :other_documents_file %></b></td>
+    <td>  <% if (@lot.other_documents_file?) %>
+          <%= link_to(@lot.other_documents_file.ident, @lot.other_documents_file.url)%>
+      <% end %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :initial_price_description %></b></td>
+    <td><%= @lot.initial_price_description %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :participant_demands %></b></td>
+    <td><%= @lot.participant_demands %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :subcontractor_demands %></b></td>
+    <td><%= @lot.subcontractor_demands %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :application_pledge %></b></td>
+    <td><%= t @lot.application_pledge?.yesno %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :application_pledge_percent %></b></td>
+    <td><%= @lot.application_pledge_percent %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :application_pledge_sum %></b></td>
+    <td><%= number_to_currency(@lot.application_pledge_sum) %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :application_pledge_form %></b></td>
+    <td><%= @lot.application_pledge_form %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :contract_pledge %></b></td>
+    <td><%=t @lot.contract_pledge?.yesno %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :contract_pledge_percent %></b></td>
+    <td><%= @lot.contract_pledge_percent %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :contract_pledge_sum %></b></td>
+    <td><%= number_to_currency(@lot.contract_pledge_sum) %></td>
+  </tr>
+  <tr>
+    <td class="right"><b><%= f.label :contract_pledge_form %></b></td>
+    <td><%= @lot.contract_pledge_form %></td>
+  </tr>
+</table>
+  <% end %>
+<h3>Список продукции</h3>
+<p class="operations"><%= link_to 'Создать продукцию', new_tender_lot_production_path(@tender, @lot) %></p>
+<table>
+  <tr>
+    <th class="operations">Операции</th>
+    <th>№</th>
+    <th>Код ОКДП</th>
+    <th>Наименование продукции</th>
+    <th>Закупается в электронной форме</th>
+    <th>Количество</th>
+    <th>Ед. изм.</th>
+    <th>Цена</th>
+  </tr>
+
+  <% @lot.productions.each do |myprod| %>
+      <tr>
+        <td><%= link_to 'Смотр', tender_lot_production_path(@tender, @lot, myprod)%>&nbsp;
+          <%= link_to 'Ред', edit_tender_lot_production_path(@tender, @lot, myprod)%>&nbsp;
+          <%= link_to 'Уд', [@tender,@lot, myprod], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= myprod.order_number %></td>
+        <td><%= myprod.product_type.code %></td>
+        <td><%= myprod.product_type.name %></td>
+        <td><%= myprod.is_electronic.yesno %></td>
+        <td><%= myprod.quantity %></td>
+        <td><%= myprod.measure.name %></td>
+        <td class="number"><%= number_to_currency(myprod.price) %></td>
+      </tr>
+  <% end %>
+</table>
+

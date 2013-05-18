@@ -1,0 +1,15 @@
+<h2>Добавить продукцию</h2>
+<% if @production.errors.any? %>
+    <div id="error_explanation">
+      <h3>Следующие ошибки (<%= pluralize(@production.errors.count, "шт.")%>) не дают сохранить продукцию:</h3>
+      <ul>
+        <% @production.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<p class="operations"><%= link_to 'Назад', tender_lot_path(@tender, @lot) %></p>
+<%= render 'form' %>
+
+

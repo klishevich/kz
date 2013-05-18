@@ -1,0 +1,110 @@
+<%= form_for([@lot.tender, @lot]) do |f| %>
+    <table>
+      <tr>
+        <td class="right"><b><%= f.label :order_number %></b></td>
+        <td><%= f.text_field :order_number %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :name %></b></td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :start_price%></b></td>
+        <td><%= f.text_field :start_price%></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :contract_delivery_date%></b></td>
+        <td><%= f.date_select :contract_delivery_date, :start_year => 2013, :order => [:day, :month, :year]%></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :contract%></b></td>
+        <td> <%= f.file_field :contract %>
+          <%= f.hidden_field :contract_cache %><br/>
+          <%= @lot.contract.ident if @lot.contract? %>
+          <label>
+            <%= f.check_box :remove_contract %>
+            <%= f.label :remove_contract %>
+          </label></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :tz_file%></b></td>
+        <td> <%= f.file_field :tz_file %>
+          <%= f.hidden_field :tz_file_cache %><br/>
+          <%= @lot.tz_file.ident if @lot.tz_file? %>
+          <label>
+            <%= f.check_box :remove_tz_file %>
+            <%= f.label :remove_tz_file %>
+          </label></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :initial_price_reasoning_file%></b></td>
+        <td> <%= f.file_field :initial_price_reasoning_file %>
+          <%= f.hidden_field :initial_price_reasoning_file_cache %><br/>
+          <%= @lot.initial_price_reasoning_file.ident if @lot.initial_price_reasoning_file? %>
+          <label>
+            <%= f.check_box :remove_initial_price_reasoning_file %>
+            <%= f.label :remove_initial_price_reasoning_file %>
+          </label></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :other_documents_file%></b></td>
+        <td> <%= f.file_field :other_documents_file %>
+          <%= f.hidden_field :other_documents_file_cache %><br/>
+          <%= @lot.other_documents_file.ident if @lot.other_documents_file? %>
+          <label>
+            <%= f.check_box :remove_other_documents_file %>
+            <%= f.label :remove_other_documents_file %>
+          </label></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :initial_price_description %></b></td>
+        <td><%= f.text_field :initial_price_description %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :participant_demands %></b></td>
+        <td><%= f.text_field :participant_demands %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :subcontractor_demands %></b></td>
+        <td><%= f.text_field :subcontractor_demands %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :application_pledge %></b></td>
+        <td><%= f.check_box :application_pledge %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :application_pledge_percent %></b></td>
+        <td><%= f.text_field :application_pledge_percent %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :application_pledge_sum %></b></td>
+        <td><%= f.text_field :application_pledge_sum %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :application_pledge_form %></b></td>
+        <td><%= f.text_field :application_pledge_form %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :contract_pledge %></b></td>
+        <td><%= f.check_box :contract_pledge %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :contract_pledge_percent %></b></td>
+        <td><%= f.text_field :contract_pledge_percent %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :contract_pledge_sum %></b></td>
+        <td><%= f.text_field :contract_pledge_sum %></td>
+      </tr>
+      <tr>
+        <td class="right"><b><%= f.label :contract_pledge_form %></b></td>
+        <td><%= f.text_field :contract_pledge_form %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>  <div class="actions">
+          <%= f.submit name="Сохранить"%>
+        </div></td>
+      </tr>
+    </table>
+<% end %>

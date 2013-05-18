@@ -1,0 +1,27 @@
+<h1>Listing tender types</h1>
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ttypes.each do |ttype| %>
+  <tr>
+    <td><%= ttype.code %></td>
+    <td><%= ttype.name %></td>
+    <td><%= link_to 'Show', ttype %></td>
+    <td><%= link_to 'Edit', edit_tender_type_path(ttype) %></td>
+    <td><%= link_to 'Destroy', ttype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tender type', new_tender_type_path %>
+<br/>
+<%= link_to 'Home', root_path %>

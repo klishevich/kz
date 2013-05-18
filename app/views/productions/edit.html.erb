@@ -1,0 +1,21 @@
+<h2>Продукция лота (правка)</h2>
+<p>Наименование торгов: <%= @tender.name %></p>
+<p>Наименование лота: <%= @lot.name %></p>
+<% if @production.errors.any? %>
+    <div id="error_explanation">
+      <h3>Следующие ошибки (<%= pluralize(@production.errors.count, "шт.")%>) не дают сохранить продукцию:</h3>
+      <ul>
+        <% @production.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<p class="operations"><%= link_to 'Реестр торгов', tenders_path %>
+  <%= link_to 'Карточка торгов', tender_path(@tender) %>
+  <%= link_to 'Лот торгов', tender_lot_path(@tender,@lot) %>
+  <%= link_to 'Отмена', tender_lot_production_path(@tender, @lot, @production) %></p>
+
+<%= render 'form' %>
+
+

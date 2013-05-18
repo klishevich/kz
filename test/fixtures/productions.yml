@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  product_type: 
+  is_electronic: false
+  quatity: 1
+  measure: 
+  price: 9.99
+
+two:
+  product_type: 
+  is_electronic: false
+  quatity: 1
+  measure: 
+  price: 9.99

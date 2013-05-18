@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  registry_number: 
+  placing_date: 2013-04-15
+  start_app_date: 2013-04-15
+  end_app_date: 2013-04-15
+  app_place: MyString
+  app_order: MyString
+  app_open_date: 2013-04-15
+  app_open_place: MyString
+  app_view_date: 2013-04-15
+  app_view_place: MyString
+  doc_begin_date: 2013-04-15
+  doc_end_date: 2013-04-15
+  doc_place: MyString
+  doc_order: MyString
+
+two:
+  name: MyString
+  registry_number: 
+  placing_date: 2013-04-15
+  start_app_date: 2013-04-15
+  end_app_date: 2013-04-15
+  app_place: MyString
+  app_order: MyString
+  app_open_date: 2013-04-15
+  app_open_place: MyString
+  app_view_date: 2013-04-15
+  app_view_place: MyString
+  doc_begin_date: 2013-04-15
+  doc_end_date: 2013-04-15
+  doc_place: MyString
+  doc_order: MyString

@@ -1,0 +1,20 @@
+<h2>Лот торгов (правка)</h2>
+<p>Наименование торгов: <%= @lot.tender.name %>
+</p>
+<% if @lot.errors.any? %>
+    <div id="error_explanation">
+      <h3>Следующие ошибки (<%= pluralize(@lot.errors.count, "шт.")%>) не дают сохранить лот:</h3>
+      <ul>
+        <% @lot.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<p class="operations"><%= link_to 'Реестр торгов', tenders_path %>
+  <%= link_to 'Карточка торгов', tender_path(@lot.tender) %>
+  <%= link_to 'Отмена', tender_lot_path(@lot.tender, @lot) %></p>
+
+<%= render 'form' %>
+
+

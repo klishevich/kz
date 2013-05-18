@@ -1,0 +1,26 @@
+<h1>Listing tender_states</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tender_states.each do |tender_state| %>
+  <tr>
+    <td><%= tender_state.name %></td>
+    <td><%= link_to 'Show', tender_state %></td>
+    <td><%= link_to 'Edit', edit_tender_state_path(tender_state) %></td>
+    <td><%= link_to 'Destroy', tender_state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tender state', new_tender_state_path %>
+<br/>
+<%= link_to 'Home', root_path %>
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3239071830">
+    <data-source source="LOCAL" name="Data Source" product="MySQL" version="5.5.29-0ubuntu0.12.04.2" jdbc-version="4.0" driver-name="MySQL-AB JDBC Driver" driver-version="mysql-connector-java-5.1.18 ( Revision: tonci.grgin@oracle.com-20110930151701-jfj14ddfq48ifkfq )" uuid="1d6331f0-92f6-41c4-8885-66b52149bb0e">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfc5dfe6dfc1dfc0dfc3dfd9df9bdf98df99dff5</user-password>
+      <libraries>
+        <library>
+          <url>jar://$USER_HOME$/Downloads/mysql-connector-java-5.1.18-bin.jar!/</url>
+        </library>
+        <library>
+          <url>file://$USER_HOME$/Downloads/mysql-connector-license.txt</url>
+        </library>
+      </libraries>
+    </data-source>
+  </component>
+</project>
+

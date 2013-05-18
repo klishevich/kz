@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Code:</b>
+  <%= @ttype.code %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @ttype.name %>
+</p>
+
+<%= link_to 'Edit', edit_tender_type_path(@ttype) %> |
+<%= link_to 'Back', tender_types_path %>
